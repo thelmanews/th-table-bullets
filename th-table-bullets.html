@@ -9,7 +9,6 @@
         :host {
           display: block;
           position: relative;
-          width: {{width + "px"}};
         }
 
         #container img {
@@ -41,7 +40,7 @@
         }
 
       </style>
-      <table id="container"> </table>
+      <table id="container" style="width: {{width | widthFilter}}"> </table>
   </template>
   <script>
 
