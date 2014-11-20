@@ -48,6 +48,13 @@
         // User should be given a dropdown of unicode symbols to choose from to avoid typos.
           { bullet: '\u25CF', text: 'This is the first bullet.', color:''},
           { bullet: '\u25CF', text: 'This is the second bullet.', color:''},
+          { bullet: '\u25CF', text: 'This is the second bullet.', color:''},
+          { bullet: '\u25CF', text: 'This is the second bullet.', color:''},
+          { bullet: '\u25CF', text: 'This is the second bullet.', color:''},
+          { bullet: '\u25CF', text: 'This is the second bullet.', color:''},
+          { bullet: '\u25CF', text: 'This is the second bullet.', color:''},
+          { bullet: '\u25CF', text: 'This is the second bullet.', color:''},
+
           { bullet: '\u25CF', text: 'This is the third bullet.', color:''}
          ],
         init: function() {
@@ -73,26 +80,31 @@
           }
         },
         reset: function() {
-          var self = this;
-          var rows = self.$.container.children;
-          [].forEach.call(rows, function(row) {
-            row.classList.remove('th-slide-show');
-          });
-
-        },
-        animate: function(){
           var self = this,
               rows = self.$.container.children;
           
-          function doSetTimeout(rows, i) {
-            setTimeout(function() { 
-              rows[i].classList.add('th-slide-show');
-            }, 500*i);
-          }
+          self.bulletsReset = true;          
+          setTimeout(function(){
+            [].forEach.call(rows, function(row) {
+              row.classList.remove('th-slide-show');
+            });
+          },500)
+        },
+        animate: function(){
+          var self = this,
+              rows = self.$.container.children
+              i=0;
+          
+          self.bulletsReset = false;
 
-          for (var i=0; i<rows.length; i++){            
-            doSetTimeout(rows, i);
-          }
+          var interval = setInterval(function(){
+              rows[i].classList.add('th-slide-show');
+              i++;
+              if(i === rows.length || self.bulletsReset) {
+                clearInterval(interval);
+              }
+          }, 500); 
+
         }
       });
 
