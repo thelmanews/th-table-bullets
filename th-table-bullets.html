@@ -98,9 +98,13 @@
           self.bulletsReset = false;
 
           var interval = setInterval(function(){
+
               rows[i].classList.add('th-slide-show');
               i++;
+              console.log(i);
+              console.log(self.bulletsReset);
               if(i === rows.length || self.bulletsReset) {
+                console.log("clear interval");
                 clearInterval(interval);
               }
           }, 500); 
