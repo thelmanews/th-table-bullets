@@ -82,10 +82,11 @@
         reset: function() {
           var self = this,
               rows = self.$.container.children;
-          
+          console.log("reset");
           self.bulletsReset = true;          
           setTimeout(function(){
             [].forEach.call(rows, function(row) {
+              console.log(row);
               row.classList.remove('th-slide-show');
             });
           },500)
@@ -94,20 +95,28 @@
           var self = this,
               rows = self.$.container.children
               i=0;
-          
-          self.bulletsReset = false;
-
-          var interval = setInterval(function(){
-
-              rows[i].classList.add('th-slide-show');
-              i++;
-              console.log(i);
+          console.log("animate");
+          self.bulletsReset=false;
+          function doSetTimeout(rows, i){
+            
+            setTimeout(function(){
+              console.log("**");
               console.log(self.bulletsReset);
-              if(i === rows.length || self.bulletsReset) {
-                console.log("clear interval");
-                clearInterval(interval);
+              if(!self.bulletsReset){
+                rows[i].classList.add('th-slide-show');
+              } else {
+                break;
               }
-          }, 500); 
+            },500*i)
+          }
+
+
+          for (var i =0; i<rows.length; i++){
+            
+              doSetTimeout(rows, i);
+            
+          }
+          
 
         }
       });
