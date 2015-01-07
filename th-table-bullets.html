@@ -75,7 +75,7 @@
             image = data[i].image;
             bullet = data[i].bullet;
             
-            if (image) {
+            if (image && image.length > 1) {
               row.innerHTML = "<td><img src='"+ data[i].image +"'></td><td>"+ data[i].text +"</td>";
             } else if (bullet) {
               row.innerHTML = "<td>"+ data[i].bullet +"</td><td>"+ data[i].text +"</td>";
@@ -98,7 +98,7 @@
         },
         animate: function(){
           var self = this,
-              rows = self.$.container.children,
+              rows = self.$.container.children
               i=0;
           
           self.bulletsReset = false;
