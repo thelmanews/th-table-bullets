@@ -20,13 +20,13 @@
           max-width: 35px;
         }
 
-        .th-slide {
+        .th-slide-out {
            transform: translateX(500%);
            -moz-transform: translateX(500%);
            -webkit-transform: translateX(500%);
         }
 
-        .th-slide-show {
+        .th-slide-in {
            transform: translateX(0%);
            -moz-transform: translateX(0%);
            -webkit-transform: translateX(0%);
@@ -70,7 +70,7 @@
 
           for (var i=0; i<data.length; i++){
             row = table.appendChild(document.createElement('tr'));
-            row.className = 'th-slide';       
+            row.className = 'th-slide-out';       
             row.style.color = data[i].color;
             image = data[i].image;
             bullet = data[i].bullet;
@@ -91,7 +91,8 @@
           self.bulletsReset = true;          
           setTimeout(function(){
             [].forEach.call(rows, function(row) {
-              row.classList.remove('th-slide-show');
+              row.classList.remove('th-slide-in');
+              row.classList.add('th-slide-out');
             });
           },500)
         },
@@ -103,13 +104,13 @@
           self.bulletsReset = false;
 
           var interval = setInterval(function(){
-              rows[i].classList.add('th-slide-show');
+              rows[i].classList.remove('th-slide-out');
+              rows[i].classList.add('th-slide-in');
               i++;
               if(i === rows.length || self.bulletsReset) {
                 clearInterval(interval);
               }
           }, 500); 
-
         }
       });
 
