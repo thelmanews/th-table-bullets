@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../th-animated/th-animated.html">
 
-<polymer-element name="th-table-bullets" extends="th-animated" attributes="tableData">
+<polymer-element name="th-table-bullets" extends="th-animated" attributes="tableData textType">
   <template>
      <core-style ref="theme"></core-style>
       <style>
@@ -40,11 +40,11 @@
         }
 
         td {
-          padding: 3px;
+          padding: 5px;
         }
 
       </style>
-      <table id="container"> </table>
+      <table id="container" class="{{textType}}"> </table>
   </template>
   <script>
 
@@ -62,6 +62,7 @@
 
           { bullet: '\u25CF', text: 'This is the third bullet.', color:''}
          ],
+        textType: 'mainpoint',
         init: function() {
           var self = this;
           var data = self.tableData;
