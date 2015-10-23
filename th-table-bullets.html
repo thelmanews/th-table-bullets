@@ -101,10 +101,15 @@
         animate: function(){
           var self = this,
               rows = self.$.container.children,
-              i=0;
+              i=1;
           
           self.bulletsReset = false;
 
+          // Slide the first bullet
+          rows[0].classList.remove('th-slide-out');
+          rows[0].classList.add('th-slide-in');
+
+          // Slide the rest of the bullets
           var interval = setInterval(function(){
               rows[i].classList.remove('th-slide-out');
               rows[i].classList.add('th-slide-in');
